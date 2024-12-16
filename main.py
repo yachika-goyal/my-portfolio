@@ -1,103 +1,168 @@
-
-
 import streamlit as st
-# import streamlit_shadcn_ui as ui
-# from pathlib import Path
-# import base64
 
 # Import individual page functions
 from home_page import home_page
 from about_page import about_page
+from academics_page import academics_page
 from skill_page import skill_page
-from projects_page import projects_page
-from experience_page import experience_page
 from contact_page import contact_page
-
-# Additional page imports would go here (projects, contact, etc.)
 
 def set_page_config():
     """
-    Set up the overall Streamlit app configuration and custom styling
+    Set up the overall Streamlit app configuration with enhanced styling
     """
     st.set_page_config(
-        page_title="Alex Rodriguez | Portfolio",
+        page_title="Yachika Goyal | Portfolio",
         page_icon=":computer:",
         layout="wide",
         initial_sidebar_state="expanded"
     )
 
-def load_global_css():
+def load_comprehensive_css():
     """
-    Create a comprehensive global CSS for the entire application
+    Create an advanced, comprehensive global CSS for the entire application
     """
     css = """
     <style>
-        /* Root color variables */
+        /* Advanced Root Variables */
         :root {
             --background-primary: #0f172a;
             --background-secondary: #1e293b;
+            --background-tertiary: #2c3e50;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-color: #3b82f6;
             --accent-hover: #2563eb;
+            --gradient-primary: linear-gradient(135deg, #4a4fe4 0%, #7b68ee 100%);
+            --gradient-secondary: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
         }
 
-        /* Global reset and base styles */
+        /* Global Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--background-secondary);
+        }
+
+        /* Body and Global Styles */
         body {
             background-color: var(--background-primary) !important;
             color: var(--text-primary) !important;
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
         }
 
-        /* Sidebar customization */
-        .css-1aumxhk {
-            background-color: var(--background-secondary) !important;
-        }
-
-        /* Navigation menu styling */
-        .stRadio > div {
-            display: flex;
-            justify-content: space-between;
-            background-color: var(--background-secondary);
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .stRadio > div > label {
-            background-color: transparent !important;
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .stRadio > div > label:hover {
-            background-color: var(--accent-color) !important;
-            color: white !important;
-        }
-
-        /* Active page indicator */
-        .stRadio > div > label[data-baseweb="radio"] {
-            background-color: var(--accent-color) !important;
-            color: white !important;
-        }
-
-        /* Scrollbar styling */
+        /* Enhanced Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
             background: var(--background-secondary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 4px;
+            background: var(--gradient-primary);
+            border-radius: 5px;
         }
 
-        /* Content area padding */
+        /* Sidebar Advanced Styling */
+        .css-1aumxhk {
+            background: linear-gradient(
+                to bottom, 
+                var(--background-secondary) 0%, 
+                var(--background-tertiary) 100%
+            ) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation Menu Enhanced Styling */
+        .stRadio > div {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stRadio > div > label {
+            background-color: transparent !important;
+            color: var(--text-secondary);
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stRadio > div > label:hover {
+            background-color: var(--accent-color) !important;
+            color: white !important;
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Active Page Indicator */
+        .stRadio > div > label[data-baseweb="radio"] {
+            background: var(--gradient-primary) !important;
+            color: white !important;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sidebar Profile Image */
+        .sidebar-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .sidebar-profile img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .sidebar-profile h2 {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Content Area */
         .css-1dixf5 {
             padding: 2rem;
-            background-color: var(--background-primary);
+            background: linear-gradient(
+                to bottom right, 
+                var(--background-primary) 0%, 
+                var(--background-secondary) 100%
+            );
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: var(--background-secondary);
+            color: var(--text-secondary);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--accent-color);
+            margin-top: 30px;
+            border-radius: 0 0 15px 15px;
         }
     </style>
     """
@@ -105,29 +170,25 @@ def load_global_css():
 
 def sidebar_navigation():
     """
-    Create a custom sidebar navigation with modern styling
+    Create a sophisticated sidebar navigation with modern design
     """
-    # Add custom logo or profile picture (optional)
+    # Sidebar Profile Section
     st.sidebar.markdown("""
-    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-        <img src="https://via.placeholder.com/150" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; border: 4px solid #3b82f6;">
+    <div class="sidebar-profile">
+        <h2>Yachika Goyal</h2>
     </div>
     """, unsafe_allow_html=True)
 
-    # Navigation menu
+    # Define pages with icons
     pages = {
-        "Home": home_page,
-        "About": about_page,
-        "Skill": skill_page,
-        "Projects": projects_page,
-        "Experience": experience_page,
-        "Contact": contact_page,
-        # Add more pages here as you create them
-        # "Projects": projects_page,
-        # "Contact": contact_page
+        "🏠 Home": home_page,
+        "👤 About": about_page,
+        "💼 Academics": academics_page,
+        "💡 Skills": skill_page,
+        "📞 Contact": contact_page
     }
 
-    # Use radio buttons for navigation
+    # Navigation using radio buttons
     page_names = list(pages.keys())
     selected_page_index = st.sidebar.radio(
         "Navigate", 
@@ -143,8 +204,8 @@ def main():
     # Set up page configuration
     set_page_config()
     
-    # Load global CSS
-    load_global_css()
+    # Load comprehensive CSS
+    load_comprehensive_css()
 
     # Sidebar navigation
     selected_page = sidebar_navigation()
@@ -152,10 +213,13 @@ def main():
     # Render the selected page
     selected_page()
 
-    # Optional: Footer
+    # Enhanced Footer
     st.markdown("""
-    <footer style="text-align: center; color: var(--text-secondary); padding: 20px; margin-top: 20px;">
-        © 2024 Alex Rodriguez | Built with Streamlit
+    <footer class="footer">
+        © 2024 Yachika Goyal | Data Analytics & Finance Professional 
+        <div style="margin-top: 10px; font-size: 0.8rem;">
+            Built with ❤️ using Streamlit
+        </div>
     </footer>
     """, unsafe_allow_html=True)
 
