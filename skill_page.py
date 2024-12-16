@@ -6,27 +6,36 @@ def skill_page():
     # Define skills with additional metadata
     skills = {
         "Programming Languages": [
-            {"name": "Python", "level": 90, "icon": "🐍"},
-            {"name": "JavaScript", "level": 85, "icon": "🟨"},
-            {"name": "TypeScript", "level": 80, "icon": "🔷"}
+            {"name": "Python", "level": 95, "icon": "🐍"},
+            {"name": "R", "level": 85, "icon": "📊"},
+            {"name": "SQL", "level": 80, "icon": "🔍"}
         ],
-        "Frameworks": [
-            {"name": "React", "level": 88, "icon": "⚛️"},
-            {"name": "Django", "level": 82, "icon": "🌐"},
-            {"name": "Node.js", "level": 80, "icon": "🟢"}
+        "Data Science Tools": [
+            {"name": "Pandas", "level": 90, "icon": "📂"},
+            {"name": "NumPy", "level": 85, "icon": "🔢"},
+            {"name": "Scikit-learn", "level": 80, "icon": "🤖"}
         ],
-        "Cloud & DevOps": [
-            {"name": "AWS", "level": 85, "icon": "☁️"},
-            {"name": "Docker", "level": 80, "icon": "🐳"},
-            {"name": "Kubernetes", "level": 75, "icon": "🚢"}
+        "Visualization Tools": [
+            {"name": "Matplotlib", "level": 88, "icon": "📈"},
+            {"name": "Seaborn", "level": 85, "icon": "📊"},
+            {"name": "Tableau", "level": 80, "icon": "📊"}
+        ],
+        "Machine Learning & AI": [
+            {"name": "TensorFlow", "level": 78, "icon": "🔗"},
+            {"name": "Keras", "level": 75, "icon": "🧠"},
+            {"name": "PyTorch", "level": 72, "icon": "🔥"}
         ]
     }
     
-    # Custom styling
+    # Custom styling with dark theme
     st.markdown("""
     <style>
+    .stApp {
+        background-color: #1a1b1e;
+        color: #e5e5e5;
+    }
     .skill-container {
-        background-color: #f0f2f6;
+        background-color: #2b2d31;
         border-radius: 10px;
         padding: 15px;
         text-align: center;
@@ -67,6 +76,15 @@ def skill_page():
                     </div>
                     """, unsafe_allow_html=True)
 
-# Optional: For testing the function directly
-if __name__ == "__main__":
+# Update function call
+def main():
+    st.set_page_config(
+        page_title="Technical Skills",
+        page_icon=":computer:",
+        layout="wide",
+        initial_sidebar_state="collapsed"
+    )
     skill_page()
+
+if __name__ == "__main__":
+    main()
