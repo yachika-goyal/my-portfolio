@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_shadcn_ui as ui
 
 def about_page():
     # Custom CSS for the About page with enhanced design
