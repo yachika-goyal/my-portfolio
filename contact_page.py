@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_shadcn_ui as ui
 
 def contact_page():
     # Comprehensive Custom CSS for Contact Page
@@ -31,6 +30,8 @@ def contact_page():
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid rgba(139, 92, 246, 0.1);
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 700px;
         }
 
         .contact-form:hover {
@@ -106,76 +107,78 @@ def contact_page():
             background-color: rgba(139, 92, 246, 0.2);
             transform: scale(1.1);
         }
+
+        .form-instructions {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-text {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 15px;
+        }
     </style>
     """, unsafe_allow_html=True)
 
     # Header
     st.markdown('<h1 class="contact-header">Contact Me</h1>', unsafe_allow_html=True)
 
-    # Main Contact Container
-    st.markdown('<div class="contact-container">', unsafe_allow_html=True)
-
     # Columns for Form and Contact Info
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([2, 1])
 
     with col1:
-        # Contact Form
-        st.markdown('<div class="contact-form">', unsafe_allow_html=True)
         with st.form("contact_form", clear_on_submit=True):
             st.markdown("### Send me a Message")
             
+            # Form instructions
+            st.markdown('<div class="form-instructions">Please provide your details and message, and I\'ll get back to you as soon as possible!</div>', unsafe_allow_html=True)
+            
+            # Form fields
             name = st.text_input("Name", placeholder="Your Full Name", label_visibility="collapsed")
             email = st.text_input("Email", placeholder="Your Email Address", label_visibility="collapsed")
             message = st.text_area("Message", placeholder="Write your message here...", label_visibility="collapsed", height=200)
             
+            # Submit button
             submit = st.form_submit_button("Send Message", use_container_width=True, help="Click to send your message")
             
             if submit:
                 # Basic validation
                 if not name or not email or not message:
-                    st.error("Please fill out all fields")
+                    st.error("Please fill out all fields.")
                 elif "@" not in email:
-                    st.error("Please enter a valid email address")
+                    st.error("Please enter a valid email address.")
                 else:
                     # Simulated message sending (replace with actual backend logic)
                     st.success("Message sent successfully! I'll get back to you soon.")
-        st.markdown('</div>', unsafe_allow_html=True)
-
+            
+            st.markdown('<div class="contact-text">Your data will remain confidential, and I will respond within 2-3 business days.</div>', unsafe_allow_html=True)
+        
     with col2:
-        # Contact Information
-        st.markdown('<div class="contact-info">', unsafe_allow_html=True)
         st.markdown("### Let's Connect")
         
         # Contact Details
         st.markdown("""
         Feel free to reach out through any of these channels. 
-        I'm always open to discussing new projects, opportunities, or just having a tech chat!
-        """)
-        
-        # Detailed Contact Info
-        st.markdown("""
-        #### Contact Details
-        - 📧 **Email:** alex.rodriguez@tech.com
-        - 💼 **LinkedIn:** /in/alexrodriguez
-        - 🐱 **GitHub:** @techpro
+        I'm always open to discussing new projects, collaborations, or opportunities in tech.
         """)
         
         # Social Links
         st.markdown("""
         <div class="contact-social">
-            <a href="https://linkedin.com/in/alexrodriguez" class="social-link" target="_blank">
+            <a href="https://www.linkedin.com/in/yachika-goyal-394a9a340/" class="social-link" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
             </a>
-            <a href="https://github.com/techpro" class="social-link" target="_blank">
+            <a href="https://github.com/yachika-goyal" class="social-link" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                 </svg>
             </a>
-            <a href="mailto:alex.rodriguez@tech.com" class="social-link" target="_blank">
+            <a href="mailto:yachikagoyal2004@gmail.com" class="social-link" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
@@ -183,10 +186,3 @@ def contact_page():
             </a>
         </div>
         """, unsafe_allow_html=True)
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# Call the contact page function
-contact_page()
